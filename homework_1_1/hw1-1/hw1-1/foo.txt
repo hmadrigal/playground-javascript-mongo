@@ -1,0 +1,8 @@
+MongoDB shell version: 2.4.9
+connecting to: test
+switched to db m101
+{
+	"_id" : ObjectId("51e4524ef3651c651a42331c"),
+	"answer" : "Hello from MongoDB!"
+}
+bye
