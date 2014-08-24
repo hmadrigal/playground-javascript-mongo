@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt-nodejs');
 function UsersDAO(db) {
     "use strict";
 
-    /* If this constructor is called without the "new" operator, "this" points
+  /* If this constructor is called without the "new" operator, "this" points
      * to the global object. Log a warning and call it correctly. */
     if (false === (this instanceof UsersDAO)) {
         console.log('Warning: UsersDAO constructor called without "new" operator');
@@ -29,7 +29,11 @@ function UsersDAO(db) {
         }
 
         // TODO: hw2.3
-        callback(Error("addUser Not Yet Implemented!"), null);
+	users.insert(user,function(err,inserted) {
+		if (err) return callback(err,null);
+		user._id = username;
+		callback(null,user);
+	});
     }
 
     this.validateLogin = function(username, password, callback) {
@@ -61,7 +65,9 @@ function UsersDAO(db) {
         }
 
         // TODO: hw2.3
-        callback(Error("validateLogin Not Yet Implemented!"), null);
+		users.findOne({ _id : username }, function(err,user) {
+			validateUserDoc(err,user);
+		});
     }
 }
 
